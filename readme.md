@@ -27,6 +27,16 @@ adb pull /remote/path /local/path
 adb push /local/path /remote/path
 ```
 
+## 截屏和录像
+
+```bash
+# 截屏
+adb shell screencap /sdcard/screen.png
+
+# 录像
+adb shell screenrecord /sdcard/demo.mp4 --time-limit 10
+```
+
 ## 关闭签名验证
 
 修改 /system/build.prop 文件，去掉签名验证。
