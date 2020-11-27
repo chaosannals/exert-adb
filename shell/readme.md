@@ -8,6 +8,9 @@
 # 设备返回建
 input keyevent 4
 
+# 锁定
+input keyevent 26
+
 # 解锁屏幕
 input keyevent 82
 
