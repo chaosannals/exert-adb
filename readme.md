@@ -55,3 +55,11 @@ adb shell reboot
 # 如果权限不够，进入 shell 处理。
 adb shell chmod 644 /system/build.prop
 ```
+
+
+## 设置
+
+```bash
+# 设置经纬度
+adb -s emulator-5554 emu geo fix 116.770473 23.463044
+```
