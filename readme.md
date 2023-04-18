@@ -63,3 +63,60 @@ adb shell chmod 644 /system/build.prop
 # 设置经纬度
 adb -s emulator-5554 emu geo fix 116.770473 23.463044
 ```
+
+## 前向/反向代理
+
+```bash
+# 列举前向代理
+adb forward --list
+
+# 设置前向代理
+# adb forward tcp:<host_port> tcp:<avd_port>
+adb -s emulator-5554 forward tcp:8080 tcp:8081
+
+# 删除
+# adb forward --remove tcp:<host_port>
+adb forward --remove tcp:8080
+```
+
+```bash
+# 这种方式只能 模拟器到本地主机，如果要内网，加多个反向代理
+# adb reverse tcp:<avd_port> tcp:<host_port>
+adb -s emulator-5554 reverse tcp:8081 tcp:8080
+
+# 列举反向代理
+# adb reverse --list
+adb reverse --list
+adb -s emulator-5554 reverse --list
+
+# 删除反向代理，tcp:<avd_port>
+# adb reverse --remove tcp:<avd_port>
+# 删除所有反向代理
+# adb reverse --remove-all
+adb reverse --remove tcp:8081
+```
+
+## 使用 telnet 链接 模拟器管理器
+
+```bash
+# 指定 host 和 port 链接
+telnet localhost 5554
+
+# 进入连接会话后需要认证
+# 会有提示你在某个路径下打开文件找到token 
+# auth <token>
+auth token123456
+
+# 列出重定向列表
+redir list
+
+# 设置重定向
+# redir add protocol:host-port:guest-port
+# protocol 只能是 tcp 或 udp
+# host-port 宿主这边
+# guest-port 虚拟机
+redir add tcp:host-port:guest-port
+
+# 删除
+redir del protocol:host-port
+```
